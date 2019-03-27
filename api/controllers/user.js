@@ -1,35 +1,65 @@
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const config = require('../configs/jwt.json');
 
-exports.create = (req, res) => {
-  const user = new User({
-    username: req.body.username,
-    password: req.body.password,
-    verificationCode: 0
-  });
+exports.register = async (params) => {
+  if (await User.findOne({ username: params.username })) {
+    throw `Username ${params.username} is already taken.`;
+  }
 
-  user.save((err) => {
-    if (err) return next(err);
-    res.send('User created succesfully!');
-  });
+  const user = new User(params);
+
+  if (params.password) {
+    user.hash = bcrypt.hashSync(params.password, 10);
+  }
+
+  await user.save();
 };
 
-exports.read = (req, res) => {
-  User.findById(req.params.id, (err, user) => {
-    if (err) return next(err);
-    res.send(user);
-  });
+exports.authenticate = async ({ username, password }) => {
+  const user = await User.findOne({ username });
+  if (user && bcrypt.compareSync(password, user.hash)) {
+    const { hash, ...userWithoutHash } = user.toObject();
+    const token = jwt.sign({ sub: user.id }, config.secret);
+    return {
+      ...userWithoutHash,
+      token
+    };
+  }
 };
 
-exports.update = (req, res) => {
-  User.findByIdAndUpdate(req.params.id, { $set: req.body }, (err, user) => {
-    if (err) return next(err);
-    res.send(user);
-  });
+exports.getById = async (id) => {
+  return await User.findById(id).select('-hash');
 };
 
-exports.delete = (req, res) => {
-  User.findByIdAndDelete(req.params.id, (err) => {
-    if (err) return next(err);
-    res.send('User deleted successfully!');
-  });
+exports.getAll = async () => {
+  return await User.find().select('-hash');
+};
+
+exports.update = async (id, params) => {
+  const user = await User.findById(id);
+
+  if (!user) {
+    throw `User not found.`;
+  }
+
+  if (
+    user.username !== params.username &&
+    (await User.findOne({ username: params.username }))
+  ) {
+    throw `Username ${params.username} is already taken.`;
+  }
+
+  if (params.password) {
+    user.hash = bcrypt.hashSync(params.password, 10);
+  }
+
+  Object.assign(user, params);
+
+  await user.save();
+};
+
+exports.delete = async (id) => {
+  await User.findByIdAndRemove(id);
 };

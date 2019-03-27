@@ -1,14 +1,13 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
-const ObjectId = mongoose.SchemaType.ObjectId;
 
 const UserSchema = new Schema({
-  userId: { type: ObjectId, required: true },
-  username: { type: String, required: true, maxlength: 150 },
-  password: { type: String, required: true, maxlength: 150 },
-  verificationCode: { type: String, maxlength: 150 },
-  verified: { type: Boolean }
+  username: { type: String, required: true, maxlength: 150, unique: true },
+  hash: { type: String, required: true, maxlength: 150 },
+  email: { type: String, required: true, unique: true }
 });
+
+UserSchema.set('toJSON', { virtuals: true });
 
 module.exports = mongoose.model('User', UserSchema);
