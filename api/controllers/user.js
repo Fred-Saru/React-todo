@@ -58,6 +58,7 @@ exports.update = async (id, params) => {
   Object.assign(user, params);
 
   await user.save();
+  return user;
 };
 
 exports.delete = async (id) => {

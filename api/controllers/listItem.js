@@ -1,41 +1,27 @@
 const ListItem = require('../models/listItem');
 
-exports.create = (req, res) => {
-  const listItem = new ListItem({
-    listId: req.body.listId,
-    content: req.body.content,
-    isDone: req.body.isDone,
-    position: req.body.position,
-    color: req.body.color
-  });
-
-  listItem.save((err) => {
-    if (err) return next(err);
-    res.send('List item created successfully!');
-  });
+exports.create = async (params) => {
+  const listItem = new ListItem(params);
+  await listItem.save();
 };
 
-exports.read = (req, res) => {
-  ListItem.findById(req.params.id, (err, listItem) => {
-    if (err) return next(err);
-    res.send(listItem);
-  });
+exports.getById = async (id) => {
+  return await ListItem.findById(id);
 };
 
-exports.update = (req, res) => {
-  ListItem.findByIdAndUpdate(
-    req.params.id,
-    { $set: req.body },
-    (err, listItem) => {
-      if (err) return next(err);
-      res.send(listItem);
-    }
-  );
+exports.update = async (id, params) => {
+  const listItem = await ListItem.findById(id);
+
+  if (!listItem) {
+    throw 'List item not found';
+  }
+
+  Object.assign(listItem, params);
+
+  await listItem.save();
+  return listItem;
 };
 
-exports.delete = (req, res) => {
-  ListItem.findByIdAndDelete(req.params.id, (err) => {
-    if (err) return next(err);
-    res.send('List item successfully deleted!');
-  });
+exports.delete = async (id) => {
+  await ListItem.findByIdAndRemove(id);
 };
