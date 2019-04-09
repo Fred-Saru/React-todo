@@ -43,7 +43,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   userCtrl
-    .delete(req.params.id)
+    .remove(req.params.id)
     .then(() => res.send('User successfully deleted.'))
     .catch((err) => next(err));
 });
