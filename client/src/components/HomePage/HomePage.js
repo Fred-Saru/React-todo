@@ -32,7 +32,7 @@ class HomePage extends React.Component {
                   ) : user.deleteError ? (
                     <span className="error"> - ERROR: {user.deleteError}</span>
                   ) : (
-                    <a href="#" onClick={this.handleRemoveUser(user.id)}>
+                    <a href="#" onClick={() => this.handleRemoveUser(user.id)}>
                       Delete
                     </a>
                   )}

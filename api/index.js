@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const jwt = require('./helpers/jwt');
 const errorHandler = require('./helpers/errorHandler');
 const db = require('./helpers/db');
@@ -11,6 +12,7 @@ const listItem = require('./routes/listItem');
 const port = 1234;
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 

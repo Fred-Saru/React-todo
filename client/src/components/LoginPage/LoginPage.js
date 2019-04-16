@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-route-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { userActions } from '../../actions';
@@ -23,7 +23,7 @@ class LoginPage extends React.Component {
   };
 
   handleSubmit = (e) => {
-    e.prevenDefault();
+    e.preventDefault();
 
     this.setState({ submitted: true });
     const { username, password } = this.state;
@@ -66,7 +66,7 @@ class LoginPage extends React.Component {
           >
             <label htmlFor="password">Password</label>
             <input
-              type="text"
+              type="password"
               className="form-control"
               name="password"
               value={password}
@@ -76,7 +76,7 @@ class LoginPage extends React.Component {
               <div className="help-block">Password is required</div>
             )}
           </div>
-          <div class="form-group">
+          <div className="form-group">
             <button className="btn btn-primary">Login</button>
             {loggingIn && (
               <img

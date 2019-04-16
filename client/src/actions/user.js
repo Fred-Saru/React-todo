@@ -14,7 +14,7 @@ const login = (username, password) => {
       .login(username, password)
       .then((user) => {
         dispatch(success(user));
-        window.history.push('/');
+        window.location.assign('/');
       })
       .catch((err) => {
         dispatch(failure(err));
@@ -31,7 +31,7 @@ const logout = () => {
 const register = (user) => {
   const request = (user) => ({ type: userActionType.REGISTER_REQUEST, user });
   const success = (user) => ({ type: userActionType.REGISTER_SUCCESS, user });
-  const failure = (err) => ({ type: userActionType.REGISTER_ERROR, err });
+  const failure = (err) => ({ type: userActionType.REGISTER_FAILURE, err });
 
   return (dispatch) => {
     dispatch(request(user));
@@ -40,7 +40,7 @@ const register = (user) => {
       .register(user)
       .then((user) => {
         dispatch(success(user));
-        window.history.push('/login');
+        window.location.assign('/login');
         dispatch(alertActions.success('Registration successful'));
       })
       .catch((err) => {

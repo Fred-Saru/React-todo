@@ -5,7 +5,7 @@ const userCtrl = require('../controllers/user');
 router.post('/register', (req, res) => {
   userCtrl
     .register(req.body)
-    .then(() => res.send('User successfully created.'))
+    .then(() => res.json({message: 'User successfully created'}))
     .catch((err) => next(err));
 });
 
@@ -44,7 +44,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   userCtrl
     .remove(req.params.id)
-    .then(() => res.send('User successfully deleted.'))
+    .then(() => res.json({message:'User successfully deleted'}))
     .catch((err) => next(err));
 });
 

@@ -23,7 +23,7 @@ export const users = (state = {}, action) => {
       };
     case userActionType.DELETE_SUCCESS:
       return {
-        items: state.items.filter((user) => user.id != action.id)
+        items: state.items.filter((user) => user.id !== action.id)
       };
     case userActionType.DELETE_FAILURE:
       return {
@@ -33,6 +33,7 @@ export const users = (state = {}, action) => {
             const { deleting, ...userCopy } = user;
             return { ...userCopy, deleteError: action.error };
           }
+          return user;
         })
       };
     default:

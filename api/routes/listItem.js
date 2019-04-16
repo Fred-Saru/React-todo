@@ -6,7 +6,7 @@ const listItemCtrl = require('../controllers/listItem');
 router.post('/create', (req, res) => {
   listItemCtrl
     .create(req.body)
-    .then(() => res.send('List item successfully created.'))
+    .then(() => res.json({ message: 'List item successfully created' }))
     .catch((err) => next(err));
 });
 
@@ -27,7 +27,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   listItemCtrl
     .delete(req.params.id)
-    .then(() => res.send('List item successfully deleted.'))
+    .then(() => res.json({ message: 'List item successfully deleted' }))
     .catch((err) => next(err));
 });
 

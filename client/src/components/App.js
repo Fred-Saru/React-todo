@@ -9,7 +9,7 @@ import { HomePage } from './HomePage/HomePage';
 import { LoginPage } from './LoginPage/LoginPage';
 import { RegisterPage } from './RegisterPage/RegisterPage';
 
-export default class App extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
 

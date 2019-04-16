@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-route-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { userActions } from '../../actions';
@@ -13,7 +13,8 @@ class RegisterPage extends React.Component {
         firstname: '',
         lastname: '',
         username: '',
-        password: ''
+        password: '',
+        email: ''
       },
       submitted: false
     };
@@ -38,7 +39,7 @@ class RegisterPage extends React.Component {
     const { user } = this.state;
     const { dispatch } = this.props;
 
-    if (user.firstname && user.lastname && user.username && user.password) {
+    if (user.firstname && user.lastname && user.username && user.password && user.email) {
       dispatch(userActions.register(user));
     }
   };
@@ -87,10 +88,27 @@ class RegisterPage extends React.Component {
           </div>
           <div
             className={`form-group ${
+              submitted && !user.email ? 'has-error' : ''
+            }`}
+          >
+            <label htmlFor="email">Email</label>
+            <input
+              type="text"
+              className="form-control"
+              name="email"
+              value={user.email}
+              onChange={this.handleChange}
+            />
+            {submitted && !user.email && (
+              <div className="help-block">Email is required</div>
+            )}
+          </div>
+          <div
+            className={`form-group ${
               submitted && !user.username ? 'has-error' : ''
             }`}
           >
-            <label htmlFor="username">username</label>
+            <label htmlFor="username">Username</label>
             <input
               type="text"
               className="form-control"
@@ -109,7 +127,7 @@ class RegisterPage extends React.Component {
           >
             <label htmlFor="password">Password</label>
             <input
-              type="text"
+              type="password"
               className="form-control"
               name="password"
               value={user.password}
