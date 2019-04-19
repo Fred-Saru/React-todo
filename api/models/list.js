@@ -5,7 +5,8 @@ const ObjectId = mongoose.Schema.ObjectId;
 
 const ListSchema = new Schema({
   userId: { type: ObjectId, ref: 'User' },
-  listUrl: { type: String, maxlength: 250 }
+  url: { type: String, maxlength: 250 },
+  name: {type: String, maxlength: 250 }
 });
 
 module.exports = mongoose.model('List', ListSchema);

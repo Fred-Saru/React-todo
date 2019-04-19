@@ -14,18 +14,18 @@ export const users = (state = {}, action) => {
       return {
         error: action.error
       };
-    case userActionType.DELETE_REQUEST:
+    case userActionType.REMOVE_REQUEST:
       return {
         ...state,
         items: state.items.map((user) =>
           user.id === action.id ? { ...user, deleting: true } : user
         )
       };
-    case userActionType.DELETE_SUCCESS:
+    case userActionType.REMOVE_SUCCESS:
       return {
         items: state.items.filter((user) => user.id !== action.id)
       };
-    case userActionType.DELETE_FAILURE:
+    case userActionType.REMOVE_FAILURE:
       return {
         ...state,
         items: state.items.map((user) => {

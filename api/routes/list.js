@@ -10,10 +10,24 @@ router.post('/create', (req, res) => {
     .catch((err) => next(err));
 });
 
+router.get('/', (req, res) => {
+  listCtrl
+    .getAll()
+    .then((lists) => res.json(lists))
+    .catch((err) => next(err));
+});
+
 router.get('/:id', (req, res) => {
   listCtrl
     .getById(req.params.id)
     .then((list) => res.json(list))
+    .catch((err) => next(err));
+});
+
+router.get('/users/:id', (req, res) => {
+  listCtrl
+    .getByUserId(req.params.id)
+    .then((lists) => res.json(lists))
     .catch((err) => next(err));
 });
 

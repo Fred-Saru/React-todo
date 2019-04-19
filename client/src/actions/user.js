@@ -5,7 +5,7 @@ import { userServices } from '../services';
 const login = (username, password) => {
   const request = (user) => ({ type: userActionType.LOGIN_REQUEST, user });
   const success = (user) => ({ type: userActionType.LOGIN_SUCCESS, user });
-  const failure = (err) => ({ type: userActionType.LOGIN_ERROR, err });
+  const failure = (err) => ({ type: userActionType.LOGIN_FAILURE, err });
 
   return (dispatch) => {
     dispatch(request({ username }));
