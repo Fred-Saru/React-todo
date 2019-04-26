@@ -10,8 +10,6 @@ import { LoginPage } from './LoginPage/LoginPage';
 import { RegisterPage } from './RegisterPage/RegisterPage';
 import { Navbar } from './Navbar/Navbar';
 import { UserListsPage } from './UserListsPage/UserListsPage';
-import { CreateListPage } from './CreateListPage/CreateListPage';
-import { EditListPage } from './EditListPage/EditListPage';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,19 +26,20 @@ class App extends React.Component {
 
     return (
       <Router history={history}>
-        <div>
+        <div className="container-fluid">
           <Route path="/" component={Navbar} />
-          <div className="container">
-            <div className="col-sm-8 col-sm-offset-2">
-              {alert.message && (
-                <div className={`alert ${alert.type}`}>{alert.message}</div>
-              )}
-              <PrivateRoute exact path="/" component={HomePage} />
-              <Route path="/login" component={LoginPage} />
-              <Route path="/register" component={RegisterPage} />
-              <PrivateRoute exact path="/lists" component={UserListsPage} />
-              <PrivateRoute path="/lists/create" component={CreateListPage} />
-              <PrivateRoute path="/lists/edit/:id" component={EditListPage} />
+          <div className="jumbotron">
+            <div className="container">
+              <div className="col-sm-8 col-sm-offset-2">
+                {alert.message && (
+                  <div className={`alert ${alert.type}`}>{alert.message}</div>
+                )}
+                <PrivateRoute exact path="/" component={HomePage} />
+                <Route path="/login" component={LoginPage} />
+                <Route path="/register" component={RegisterPage} />
+                <Route exact path="/lists" component={UserListsPage} />
+                <Route exact path="/lists" component={UserListsPage} />
+              </div>
             </div>
           </div>
         </div>

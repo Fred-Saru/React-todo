@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
   authentication,
   registration,
   user,
-  lists
+  lists,
 });
 
 export default rootReducer;

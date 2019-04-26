@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const listCtrl =  require('../controllers/list');
+const listCtrl = require('../controllers/list');
 
 router.get('/users/:id', (req, res) => {
   listCtrl
@@ -13,6 +13,13 @@ router.post('/create', (req, res) => {
   listCtrl
     .create(req.body)
     .then((list) => res.json(list))
+    .catch((err) => next(err));
+});
+
+router.get('/users/:id', (req, res) => {
+  listCtrl
+    .getByUserId(req.params.id)
+    .then((lists) => res.json(lists))
     .catch((err) => next(err));
 });
 

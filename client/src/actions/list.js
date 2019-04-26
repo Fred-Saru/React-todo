@@ -16,12 +16,15 @@ const create = (list) => {
         window.location.assign('/lists');
       })
       .catch((err) => dispatch(failure(err)));
-  }
+  };
 };
 
 const getByUserId = (userId) => {
   const request = () => ({ type: listActionType.GETBYUSER_REQUEST });
-  const success = (lists) => ({ type: listActionType.GETBYUSER_SUCCESS, lists });
+  const success = (lists) => ({
+    type: listActionType.GETBYUSER_SUCCESS,
+    lists,
+  });
   const failure = (err) => ({ type: listActionType.GETBYUSER_FAILURE, err });
 
   return (dispatch) => {
@@ -31,7 +34,7 @@ const getByUserId = (userId) => {
       .getByUserId(userId)
       .then((list) => dispatch(success(list)))
       .catch((err) => dispatch(failure(err)));
-  }
+  };
 };
 
 const update = (list) => {
@@ -49,7 +52,7 @@ const update = (list) => {
         window.location.assign('/lists');
       })
       .catch((err) => dispatch(failure(err)));
-  }
+  };
 };
 
 const remove = (listId) => {
@@ -67,12 +70,12 @@ const remove = (listId) => {
         window.location.assign('/lists');
       })
       .catch((err) => dispatch(failure(err)));
-  }
+  };
 };
 
 export const listActions = {
   create,
   getByUserId,
   update,
-  remove
+  remove,
 };

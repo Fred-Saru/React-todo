@@ -23,43 +23,51 @@ const create = (list) => {
   const requestOptions = {
     method: 'POST',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
-    body: JSON.stringify(list)
+    body: JSON.stringify(list),
   };
 
-  return fetch(`${config.apiUrl}/lists/create`, requestOptions).then(handleResponse);
-}
+  return fetch(`${config.apiUrl}/lists/create`, requestOptions).then(
+    handleResponse
+  );
+};
 
 const getByUserId = (userId) => {
   const requestOptions = {
     method: 'GET',
-    headers: authHeader()
+    headers: authHeader(),
   };
 
-  return fetch(`${config.apiUrl}/lists/users/${userId}`, requestOptions).then(handleResponse);
-}
+  return fetch(`${config.apiUrl}/lists/users/${userId}`, requestOptions).then(
+    handleResponse
+  );
+};
 
 const update = (list) => {
   const requestOptions = {
     method: 'PUT',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
-    body: JSON.stringify(list)
+    body: JSON.stringify(list),
   };
 
-  return fetch(`${config.apiUrl}/lists/${list._id}`, requestOptions).then(handleResponse);
-}
+  return fetch(`${config.apiUrl}/lists/${list._id}`, requestOptions).then(
+    handleResponse
+  );
+};
 
 const remove = (userId, listId) => {
   const requestOptions = {
     method: 'DELETE',
-    headers: { ...authHeader() }
+    headers: { ...authHeader() },
   };
 
-  return fetch(`${config.apiUrl}/lists/${listId}`, requestOptions).then(handleResponse);
-}
+  return fetch(`${config.apiUrl}/lists/${listId}`, requestOptions).then(
+    handleResponse
+  );
+};
 
 export const listServices = {
   getByUserId,
   create,
   update,
-  remove
+  remove,
 };

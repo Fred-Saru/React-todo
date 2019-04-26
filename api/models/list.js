@@ -7,7 +7,7 @@ const ListSchema = new Schema({
   title: { type: String, maxlength: 250 },
   rank: { type: Number },
   color: { type: String },
-  userId: { type: ObjectId, ref: 'User' }
+  userId: { type: ObjectId, ref: 'User' },
 });
 
 module.exports = mongoose.model('List', ListSchema);
