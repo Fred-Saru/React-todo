@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
-const ObjectId = mongoose.Schema.ObjectId;
+const ObjectId = Schema.Types.ObjectId;
 
 const ListSchema = new Schema({
-  userId: { type: ObjectId, ref: 'User' },
-  listUrl: { type: String, maxlength: 250 }
+  title: { type: String, maxlength: 250 },
+  rank: { type: Number },
+  color: { type: String },
+  userId: { type: ObjectId, ref: 'User' }
 });
 
 module.exports = mongoose.model('List', ListSchema);

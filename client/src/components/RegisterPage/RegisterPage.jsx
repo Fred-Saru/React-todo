@@ -10,8 +10,6 @@ class RegisterPage extends React.Component {
 
     this.state = {
       user: {
-        firstname: '',
-        lastname: '',
         username: '',
         password: '',
         email: ''
@@ -39,7 +37,7 @@ class RegisterPage extends React.Component {
     const { user } = this.state;
     const { dispatch } = this.props;
 
-    if (user.firstname && user.lastname && user.username && user.password && user.email) {
+    if (user.username && user.password && user.email) {
       dispatch(userActions.register(user));
     }
   };
@@ -52,40 +50,6 @@ class RegisterPage extends React.Component {
       <div className="col-md-6 col-md-offset-3">
         <h2>Register</h2>
         <form name="registerForm" onSubmit={this.handleSubmit}>
-          <div
-            className={`form-group ${
-              submitted && !user.firstname ? 'has-error' : ''
-            }`}
-          >
-            <label htmlFor="firstname">Firstname</label>
-            <input
-              type="text"
-              className="form-control"
-              name="firstname"
-              value={user.firstname}
-              onChange={this.handleChange}
-            />
-            {submitted && !user.firstname && (
-              <div className="help-block">Firstname is required</div>
-            )}
-          </div>
-          <div
-            className={`form-group ${
-              submitted && !user.lastname ? 'has-error' : ''
-            }`}
-          >
-            <label htmlFor="lastname">Lastname</label>
-            <input
-              type="text"
-              className="form-control"
-              name="lastname"
-              value={user.lastname}
-              onChange={this.handleChange}
-            />
-            {submitted && !user.lastname && (
-              <div className="help-block">Lastname is required</div>
-            )}
-          </div>
           <div
             className={`form-group ${
               submitted && !user.email ? 'has-error' : ''
@@ -138,14 +102,14 @@ class RegisterPage extends React.Component {
             )}
           </div>
           <div className="form-group">
-            <button className="btn btn-primary">Register</button>
+            <button className="btn">Register</button>
             {registering && (
               <img
                 alt=""
                 src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
               />
             )}
-            <Link to="/login" className="btn btn-link">
+            <Link to="/login" className="btn-flat">
               Cancel
             </Link>
           </div>

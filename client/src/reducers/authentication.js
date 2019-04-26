@@ -1,19 +1,14 @@
 import { userActionType } from '../constants';
 
-let user = JSON.parse(localStorage.getItem('user'));
-const initialState = user ? { loggedIn: true, user } : {};
-
-export const authentication = (state = initialState, action) => {
+export const authentication = (state = {}, action) => {
   switch (action.type) {
     case userActionType.LOGIN_REQUEST:
       return {
-        logginIn: true,
-        user: action.user
+        logginIn: true
       };
     case userActionType.LOGIN_SUCCESS:
       return {
-        logginIn: true,
-        user: action.user
+        loggedIn: true
       };
     case userActionType.LOGIN_FAILURE:
     case userActionType.LOGOUT:

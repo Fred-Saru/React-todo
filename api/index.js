@@ -7,7 +7,7 @@ const db = require('./helpers/db');
 
 const user = require('./routes/user');
 const list = require('./routes/list');
-const listItem = require('./routes/listItem');
+const router = express.Router();
 
 const port = 1234;
 const app = express();
@@ -18,9 +18,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(jwt());
 
-app.use('/users', user);
-app.use('/lists', list);
-app.use('/items', listItem);
+router.use('/users', user);
+router.use('/lists', list);
+app.use('/api/v1', router);
 
 app.use(errorHandler);
 

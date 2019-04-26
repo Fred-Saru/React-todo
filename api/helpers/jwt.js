@@ -5,7 +5,7 @@ const userCtrl = require('../controllers/user');
 jwt = () => {
   const secret = config.secret;
   return expressJwt({ secret, isRevoked }).unless({
-    path: ['/users/authenticate', '/users/register']
+    path: ['/api/v1/users/authenticate', '/api/v1/users/register']
   });
 };
 

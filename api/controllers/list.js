@@ -1,27 +1,43 @@
 const List = require('../models/list');
 
+exports.getByUserId = async (userId) => {
+  return await List.find({ userId: { $eq: userId } });
+}
+
 exports.create = async (params) => {
   const list = new List(params);
+  
+  await List.updateMany({ userId: { $eq: params.userId } }, { $inc: { rank: 1 }});
   await list.save();
-};
 
-exports.getById = async (id) => {
-  return await List.findById(id);
-};
+  return list;
+}
 
-exports.update = async (id, params) => {
-  const list = await List.findById(id);
+exports.update = async (list) => {
+  const oldList = List.findById(list._id);
+  let minRnk = 0, maxRnk = 0, deltaRnk = 0;
 
-  if (!list) {
-    throw 'List not found.';
+  if (oldList.rank !== list.rank) {
+    if (oldList.rank < list.rank) {
+      minRnk = oldList.rank;
+      maxRnk = list.rank;
+      deltaRnk = -1;
+    } else {
+      minRnk = listrank;
+      maxRnk = oldList.rank;
+      deltaRnk = 1;
+    }
   }
 
-  Object.assign(list, params);
-
+  await List.updateMany({ userId: { $eq: params.userId }, rank: { $gt: minRnk, $lt: maxRnk } }, { $inc: { rank: deltaRnk }});
   await list.save();
   return list;
-};
+}
 
-exports.delete = async (id) => {
+exports.remove = async (id) => {
+  const oldList = List.findById(list._id);
+
+  await List.updateMany({ userId: { $eq: params.userId }, rank: { $gt: oldList.rank } }, { $inc: { rank: -1 }});
   await List.findByIdAndRemove(id);
-};
+  return user;
+}

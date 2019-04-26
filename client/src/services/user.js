@@ -77,7 +77,7 @@ const update = (user) => {
     body: JSON.stringify(user)
   };
 
-  return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(
+  return fetch(`${config.apiUrl}/users/${user._id}`, requestOptions).then(
     handleResponse
   );
 };

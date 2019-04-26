@@ -5,7 +5,7 @@ import { userServices } from '../services';
 const login = (username, password) => {
   const request = (user) => ({ type: userActionType.LOGIN_REQUEST, user });
   const success = (user) => ({ type: userActionType.LOGIN_SUCCESS, user });
-  const failure = (err) => ({ type: userActionType.LOGIN_ERROR, err });
+  const failure = (err) => ({ type: userActionType.LOGIN_FAILURE, err });
 
   return (dispatch) => {
     dispatch(request({ username }));
@@ -50,23 +50,24 @@ const register = (user) => {
   };
 };
 
-const getAll = () => {
-  const request = () => ({ type: userActionType.GETALL_REQUEST });
-  const success = (users) => ({ type: userActionType.GETALL_SUCCESS, users });
-  const failure = (err) => ({ type: userActionType.GETALL_FAILURE, err });
+const update = (user) => {
+  const request = (user) => ({ type: userActionType.UPDATE_REQUEST, user });
+  const success = (user) => ({ type: userActionType.UPDATE_SUCCESS, user });
+  const failure = (err) => ({ type: userActionType.UPDATE_FAILURE, err });
 
   return (dispatch) => {
-    dispatch(request());
+    dispatch(request(user));
+
     userServices
-      .getAll()
-      .then((users) => {
-        dispatch(success(users));
+      .update(user)
+      .then(() => {
+        dispatch(success(user));
       })
       .catch((err) => {
         dispatch(failure(err));
       });
   };
-};
+}
 
 const remove = (id) => {
   const request = (id) => ({ type: userActionType.REMOVE_REQUEST, id });
@@ -91,6 +92,6 @@ export const userActions = {
   register,
   login,
   logout,
-  getAll,
+  update,
   remove
 };

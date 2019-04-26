@@ -17,11 +17,11 @@ module.exports = {
         template: './public/index.html'
     })],
     devServer: {
-        historyApiFallback: true
+        historyApiFallback: true    
     },
     externals: {
         config: JSON.stringify({
-            apiUrl: "http://localhost:1234"
+            apiUrl: "http://localhost:1234/api/v1"
         })
     }
 }
