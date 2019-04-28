@@ -23,7 +23,7 @@ const create = (list) => {
   const requestOptions = {
     method: 'POST',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
-    body: JSON.stringify(list),
+    body: JSON.stringify(list)
   };
 
   return fetch(`${config.apiUrl}/lists/create`, requestOptions).then(
@@ -34,7 +34,7 @@ const create = (list) => {
 const getByUserId = (userId) => {
   const requestOptions = {
     method: 'GET',
-    headers: authHeader(),
+    headers: authHeader()
   };
 
   return fetch(`${config.apiUrl}/lists/users/${userId}`, requestOptions).then(
@@ -46,7 +46,7 @@ const update = (list) => {
   const requestOptions = {
     method: 'PUT',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
-    body: JSON.stringify(list),
+    body: JSON.stringify(list)
   };
 
   return fetch(`${config.apiUrl}/lists/${list._id}`, requestOptions).then(
@@ -54,10 +54,10 @@ const update = (list) => {
   );
 };
 
-const remove = (userId, listId) => {
+const remove = (listId) => {
   const requestOptions = {
     method: 'DELETE',
-    headers: { ...authHeader() },
+    headers: authHeader()
   };
 
   return fetch(`${config.apiUrl}/lists/${listId}`, requestOptions).then(
@@ -69,5 +69,5 @@ export const listServices = {
   getByUserId,
   create,
   update,
-  remove,
+  remove
 };

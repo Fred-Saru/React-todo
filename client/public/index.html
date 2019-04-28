@@ -7,26 +7,118 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <meta name="theme-color" content="#000000" />
-    
+
     <title>
       React + Redux - User Registration and Login Example & Tutorial
     </title>
     <link
       rel="stylesheet"
-      href="http://localhost/OrealCDN/v3Next/css/materialize.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
     />
     <style>
-      a {
+      .mar-0 {
+        margin: 0px;
+      }
+
+      .mar-5 {
+        margin: 5px;
+      }
+
+      .mar-10 {
+        margin: 10px;
+      }
+
+      .grow {
+        flex-grow: 1;
+      }
+
+      .btn-list > a,
+      .btn-list > button {
+        margin-left: 5px;
+      }
+
+      .btn-list:first-child {
+        margin-left: 0;
+      }
+
+      .round {
+        border-radius: 50%;
+      }
+
+      .pointer {
         cursor: pointer;
       }
-      .help-block {
-        font-size: 12px;
+
+      .grab {
+        cursor: grab;
+      }
+
+      .color-display {
+        width: 25px;
+        padding: 5px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 2px;
+        box-sizing: content-box;
+        display: flex;
+      }
+
+      .color-list {
+        width: 200px;
+        padding: 5px;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 2px;
+        box-shadow: rgba(0, 0, 0, 0.15) 0 3px 12px;
+        box-sizing: content-box;
+      }
+
+      .arrow-up {
+        position: absolute;
+        border-width: 7px;
+        border-color: transparent transparent white;
+        border-style: solid;
+        border-radius: 2px;
+        top: -14px;
+        left: 10px;
+      }
+
+      .arrow-up_outline {
+        position: absolute;
+        border-width: 8px;
+        border-color: transparent transparent rgba(0, 0, 0, 0.2);
+        border-style: solid;
+        border-radius: 2px;
+        top: -16px;
+        left: 9px;
+      }
+
+      .color-tile {
+        width: 25px;
+        height: 25px;
+      }
+
+      .color-tile:hover {
+        position: relative;
+        z-index: 2;
+        outline: white solid 2px;
+        box-shadow: rgba(0, 0, 0, 0.2) 0 0 5px 2px;
+      }
+
+      body {
+        background-color: #eee;
       }
     </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
 </html>

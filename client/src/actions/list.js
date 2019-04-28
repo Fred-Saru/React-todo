@@ -23,7 +23,7 @@ const getByUserId = (userId) => {
   const request = () => ({ type: listActionType.GETBYUSER_REQUEST });
   const success = (lists) => ({
     type: listActionType.GETBYUSER_SUCCESS,
-    lists,
+    lists
   });
   const failure = (err) => ({ type: listActionType.GETBYUSER_FAILURE, err });
 
@@ -49,7 +49,6 @@ const update = (list) => {
       .update(list)
       .then((list) => {
         dispatch(success(list));
-        window.location.assign('/lists');
       })
       .catch((err) => dispatch(failure(err)));
   };
@@ -73,9 +72,18 @@ const remove = (listId) => {
   };
 };
 
+const reorder = (lists) => {
+  const success = (lists) => ({ type: listActionType.REORDER_SUCCESS, lists });
+
+  return (dispatch) => {
+    dispatch(success(lists));
+  };
+};
+
 export const listActions = {
   create,
   getByUserId,
   update,
-  remove,
+  reorder,
+  remove
 };

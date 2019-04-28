@@ -16,39 +16,44 @@ exports.create = async (params) => {
   return list;
 };
 
-exports.update = async (list) => {
-  const oldList = List.findById(list._id);
+exports.update = async (params) => {
+  const list = await List.findById(params._id);
   let minRnk = 0,
     maxRnk = 0,
     deltaRnk = 0;
 
-  if (oldList.rank !== list.rank) {
-    if (oldList.rank < list.rank) {
-      minRnk = oldList.rank;
-      maxRnk = list.rank;
+  if (list.rank !== params.rank) {
+    if (list.rank < params.rank) {
+      minRnk = list.rank;
+      maxRnk = params.rank;
       deltaRnk = -1;
     } else {
-      minRnk = listrank;
-      maxRnk = oldList.rank;
+      minRnk = params.rank;
+      maxRnk = list.rank;
       deltaRnk = 1;
     }
   }
 
   await List.updateMany(
-    { userId: { $eq: params.userId }, rank: { $gt: minRnk, $lt: maxRnk } },
+    {
+      userId: list.userId,
+      rank: { $gte: minRnk, $lte: maxRnk }
+    },
     { $inc: { rank: deltaRnk } }
   );
+
+  Object.assign(list, params);
+
   await list.save();
   return list;
 };
 
-exports.remove = async (id) => {
-  const oldList = List.findById(list._id);
+exports.remove = async (listId) => {
+  const oldList = await List.findById(listId);
 
   await List.updateMany(
-    { userId: { $eq: params.userId }, rank: { $gt: oldList.rank } },
+    { userId: { $eq: oldList.userId }, rank: { $gt: oldList.rank } },
     { $inc: { rank: -1 } }
   );
-  await List.findByIdAndRemove(id);
-  return user;
+  await List.findByIdAndRemove(listId);
 };

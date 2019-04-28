@@ -7,7 +7,7 @@ class Navbar extends React.Component {
     return (
       <div className="navbar-fixed">
         <nav>
-          <div className="nav-wrapper">
+          <div className="nav-wrapper container">
             <Link to="/" className="brand-logo">
               Todo
             </Link>
@@ -26,9 +26,6 @@ class Navbar extends React.Component {
                   <Link to="/lists">My lists</Link>
                 </li>
                 <li>
-                  <Link to="/lists/create">New list</Link>
-                </li>
-                <li>
                   <Link to="/login">Logout</Link>
                 </li>
               </ul>
@@ -44,7 +41,7 @@ const mapStateToProps = (state) => {
   const { user } = state;
 
   return {
-    user,
+    user
   };
 };
 

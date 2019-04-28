@@ -26,21 +26,16 @@ class App extends React.Component {
 
     return (
       <Router history={history}>
-        <div className="container-fluid">
+        <div>
           <Route path="/" component={Navbar} />
-          <div className="jumbotron">
-            <div className="container">
-              <div className="col-sm-8 col-sm-offset-2">
-                {alert.message && (
-                  <div className={`alert ${alert.type}`}>{alert.message}</div>
-                )}
-                <PrivateRoute exact path="/" component={HomePage} />
-                <Route path="/login" component={LoginPage} />
-                <Route path="/register" component={RegisterPage} />
-                <Route exact path="/lists" component={UserListsPage} />
-                <Route exact path="/lists" component={UserListsPage} />
-              </div>
-            </div>
+          <div className="container">
+            {alert.message && (
+              <div className={`alert ${alert.type}`}>{alert.message}</div>
+            )}
+            <PrivateRoute exact path="/" component={HomePage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={RegisterPage} />
+            <PrivateRoute exact path="/lists" component={UserListsPage} />
           </div>
         </div>
       </Router>
