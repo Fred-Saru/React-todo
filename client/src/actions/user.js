@@ -14,7 +14,7 @@ const login = (username, password) => {
       .login(username, password)
       .then((user) => {
         dispatch(success(user));
-        window.location.assign('/');
+        window.location.assign('/lists');
       })
       .catch((err) => {
         dispatch(failure(err));

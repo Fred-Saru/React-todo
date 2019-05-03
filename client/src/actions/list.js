@@ -13,7 +13,6 @@ const create = (list) => {
       .create(list)
       .then((list) => {
         dispatch(success(list));
-        window.location.assign('/lists');
       })
       .catch((err) => dispatch(failure(err)));
   };
@@ -66,7 +65,6 @@ const remove = (listId) => {
       .remove(listId)
       .then(() => {
         dispatch(success(listId));
-        window.location.assign('/lists');
       })
       .catch((err) => dispatch(failure(err)));
   };

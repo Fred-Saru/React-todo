@@ -13,29 +13,13 @@
     </title>
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+      href="http://localhost/orealcdn/vendor/material/materialize.min.css"
     />
     <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      href="http://localhost/orealcdn/vendor/material/material-icons.css"
       rel="stylesheet"
     />
     <style>
-      .mar-0 {
-        margin: 0px;
-      }
-
-      .mar-5 {
-        margin: 5px;
-      }
-
-      .mar-10 {
-        margin: 10px;
-      }
-
-      .grow {
-        flex-grow: 1;
-      }
-
       .btn-list > a,
       .btn-list > button {
         margin-left: 5px;
@@ -45,16 +29,8 @@
         margin-left: 0;
       }
 
-      .round {
-        border-radius: 50%;
-      }
-
-      .pointer {
-        cursor: pointer;
-      }
-
-      .grab {
-        cursor: grab;
+      .color-picker {
+        position: relative;
       }
 
       .color-display {
@@ -64,18 +40,22 @@
         border-radius: 2px;
         box-sizing: content-box;
         display: flex;
+        background-color: white;
       }
 
       .color-list {
         width: 200px;
         padding: 5px;
-        position: relative;
+        position: absolute;
         display: flex;
         flex-wrap: wrap;
         border: 1px solid rgba(0, 0, 0, 0.2);
         border-radius: 2px;
         box-shadow: rgba(0, 0, 0, 0.15) 0 3px 12px;
         box-sizing: content-box;
+        top: 45px;
+        background-color: #fff;
+        z-index: 5;
       }
 
       .arrow-up {
@@ -110,6 +90,54 @@
         box-shadow: rgba(0, 0, 0, 0.2) 0 0 5px 2px;
       }
 
+      .collection {
+        overflow: visible;
+      }
+
+      .mar-0 {
+        margin: 0px;
+      }
+
+      .mar-5 {
+        margin: 5px;
+      }
+
+      .mar-10 {
+        margin: 10px;
+      }
+
+      .mar-t-10 {
+        margin-top: 10px;
+      }
+
+      .mar-l-5 {
+        margin-left: 5px;
+      }
+
+      .mar-l-10 {
+        margin-left: 10px;
+      }
+
+      .grow {
+        flex-grow: 1;
+      }
+
+      .round {
+        border-radius: 50%;
+      }
+
+      .pointer {
+        cursor: pointer;
+      }
+
+      .grab {
+        cursor: grab;
+      }
+
+      .hidden {
+        display: none;
+      }
+
       body {
         background-color: #eee;
       }
@@ -119,6 +147,6 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="http://localhost/orealcdn/vendor/material/materialize.min.js"></script>
   </body>
 </html>
