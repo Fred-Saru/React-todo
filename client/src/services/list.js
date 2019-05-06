@@ -10,8 +10,7 @@ const handleResponse = (response) => {
     }
 
     if (response.status === 401) {
-      logout();
-      window.location.reload(true);
+      window.location.assign('/login');
     }
 
     const error = (data && data.message) || response.statusText;
