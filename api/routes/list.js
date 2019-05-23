@@ -2,14 +2,14 @@ const express = require('express');
 const router = express.Router();
 const listCtrl = require('../controllers/list');
 
-router.post('/create', (req, res) => {
+router.post('/create', (req, res, next) => {
   listCtrl
     .create(req.body)
     .then((list) => res.json(list))
     .catch((err) => next(err));
 });
 
-router.get('/users/:id', (req, res) => {
+router.get('/users/:id', (req, res, next) => {
   listCtrl
     .getByUserId(req.params.id)
     .then((lists) => res.json(lists))

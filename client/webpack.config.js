@@ -2,14 +2,20 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
+    entry: "./src/index.tsx",
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
-                loader: 'babel-loader'
+                test: /\.tsx?$/,
+                loader: "awesome-typescript-loader"
+            },
+            {
+                enforce: "pre", 
+                test: /\.js?$/,
+                use: ['source-map-loader']
             }
         ]
     },
@@ -20,8 +26,11 @@ module.exports = {
         historyApiFallback: true    
     },
     externals: {
+        "react": "React",
+        "react-dom": "ReactDOM",
         config: JSON.stringify({
             apiUrl: "http://localhost:1234/api/v1"
         })
-    }
+    },
+    devtool: "source-map"
 }

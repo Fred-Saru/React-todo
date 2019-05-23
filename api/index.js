@@ -7,6 +7,7 @@ const db = require('./helpers/db');
 
 const user = require('./routes/user');
 const list = require('./routes/list');
+const task = require('./routes/task');
 const router = express.Router();
 
 const port = 1234;
@@ -20,6 +21,7 @@ app.use(jwt());
 
 router.use('/users', user);
 router.use('/lists', list);
+router.use('/tasks', task);
 app.use('/api/v1', router);
 
 app.use(errorHandler);
